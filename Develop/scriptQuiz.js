@@ -13,8 +13,7 @@ var progress = document.getElementById("progress");
 var scoreDiv = document.getElementById("scoreContainer");
 var overDiv = document.getElementById("over");
 var highscoreDiv = document.getElementById("highScores");
-var userInitials = document.querySelector("#initial");
-var userScore = document.querySelector("#user-score-percentage");
+
 var scoreList = document.querySelector("#score-list");
 var scoresbtn = document.getElementById("showScores");
 var hscoresbtn = document.getElementById("hScores");
@@ -175,25 +174,41 @@ function scoreRender(){
   
 }
 function saveScore(){
-  
+  var recent_scores = [];
     scoreDiv.style.display ="none";
     highscoreDiv.style.display = "block";
-    scoreList.innerHTML = " Score"
+    scoreList.innerHTML = "Score" 
     var initial = document.getElementById('initial').value;
     localStorage.setItem('user_name', initial); //store a key/value
     var retrievedUsername = localStorage.getItem('user_name'); //retrieve the key
     localStorage.setItem('score', score); //store a key/value
     var retrievedScore = localStorage.getItem('score'); //retrieve the key
     var p = document.createElement("p");
-    p.textContent = retrievedUsername + (": " + retrievedScore);
-    localStorage.setItem('highscore', p); //store a key/value
-    var retrievedhighScore = localStorage.getItem('highscore'); 
-    scoreList.appendChild(p);
+     p.textContent = retrievedUsername + (": " + retrievedScore);
+
+   
+        localStorage.setItem('highScores', p); //store a key/value
+        var retrievedhighScore = localStorage.getItem('highScores'); 
+        scoreList.appendChild(p);
+
+   
+  
     $("#hScores").on("click",function(){
         console.log("open")
-        var retrievedhighScore = localStorage.getItem('highscore'); 
-        scoreList.appendChild(p);
+       
+        var highScores = [];
+
+    localStorage.setItem("highScores",p, JSON.stringify(highScores));
+    highScores = JSON.parse(localStorage.getItem("highScores"));
+
+
+    highScores.sort(function(a, b) {
+    return b-a;
+    });
+    console.log(highScores);
+      
+
     })
-};
 
 
+}
