@@ -1,3 +1,6 @@
+
+
+
 // select all elements
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
@@ -17,7 +20,12 @@ var highscoreDiv = document.getElementById("highScores");
 var scoreList = document.querySelector("#score-list");
 var scoresbtn = document.getElementById("showScores");
 var hscoresbtn = document.getElementById("hScores");
-// create our questions
+
+var bleep= new Audio();
+bleep.src="bleep-sound.mp3";
+function loadContent(){
+    bleep.play();
+// create 5 questions Quiz
 let questions = [
     {
         question : "Select the appropriate HTML tag used for thr largets heading?",
@@ -134,6 +142,7 @@ function checkAnswer(answer){
         // change progress color to red
         answerIsWrong();
         count-=5
+        bleep.play();
         
     }
     if(runningQuestion < lastQuestion){
@@ -185,30 +194,56 @@ function saveScore(){
     var retrievedScore = localStorage.getItem('score'); //retrieve the key
     var p = document.createElement("p");
      p.textContent = retrievedUsername + (": " + retrievedScore);
-
-   
+ 
         localStorage.setItem('highScores', p); //store a key/value
         var retrievedhighScore = localStorage.getItem('highScores'); 
         scoreList.appendChild(p);
 
    
   
-    $("#hScores").on("click",function(){
-        console.log("open")
+    //$("#hScores").on("click",function(){
+       // console.log("open")
        
-        var highScores = [];
+        //var highScores = [];
 
-    localStorage.setItem("highScores",p, JSON.stringify(highScores));
-    highScores = JSON.parse(localStorage.getItem("highScores"));
+    //localStorage.setItem("highScores",p, JSON.stringify(highScores));
+    //highScores = JSON.parse(localStorage.getItem("highScores"));
 
 
-    highScores.sort(function(a, b) {
-    return b-a;
-    });
-    console.log(highScores);
+    //highScores.sort(function(a, b) {
+    //return b-a;
+   // });
+    //console.log(highScores);
       
-
-    })
+   // })
 
 
 }
+
+//function saveScore(){
+    //scoreDiv.style.display ="none";
+    //highscoreDiv.style.display = "block";
+    //scoreList.innerHTML = "Score" 
+    //scoreList.innerHTML = "High Score" 
+
+    //retrieve the User Name
+
+    //var initial = document.getElementById('initial').value;
+   
+   // localStorage.setItem('user_name', initial); //store a key/value
+   //localStorage.setItem('user_name', initial); 
+  // var retrievedUsername = localStorage.getItem('user_name').split(",");
+  //  retrievedUsername.push(initial) 
+   // localStorage.setItem('user_name', retrievedUsername)
+    //retrieve the score
+    //localStorage.setItem('score', score); //store a key/value
+    //localStorage.setItem('score', score);
+    //var retrievedScore = localStorage.getItem('score').split(","); //retrieve the key
+   // retrievedScore.push(score)
+    //localStorage.setItem('score',retrievedScore[i])
+    //for (var i = 0; i < 2; i++){
+    //var p = document.createElement("p");
+    // p.textContent = user_name + (": " + score);
+    //scoreList.appendChild(p);
+    //}
+   
