@@ -8,3 +8,5 @@ Score Lay out:
 ![image](https://user-images.githubusercontent.com/66760710/88052689-9e1c3300-cb28-11ea-8919-5bb661f1c624.png)
 
 
+Saving high scores and displaying them:
+![image](https://user-images.githubusercontent.com/66760710/88052810-d15ec200-cb28-11ea-81cf-9fb0c0dbd6e7.png)
