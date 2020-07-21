@@ -1,5 +1,10 @@
 # homeWork4
-This Homework was to create a Quiz with Timer and Scores saved and displayed.
+This Homework was to create a Quiz with Timer and saving scores with user initials in local storage.
+Quiz was created with 5 questions with 4 options to select from.
+One of the response was correct and user can earn one point by answering correctly.
+Scores were saves with user initials in local storage and score percentage was displayed.
+Bleep sound was added when user answered incorrectly.
+There is a response Heat map also that is showing in the answer is wrong or right, using red and green colors.
 Quiz lay out:
 ![image](https://user-images.githubusercontent.com/66760710/88052519-5ac1c480-cb28-11ea-896b-9f0243f726de.png)
 
