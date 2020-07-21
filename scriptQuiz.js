@@ -1,7 +1,7 @@
 
 
 
-// select all elements
+//Defining the variables
 var start = document.getElementById("start");
 var quiz = document.getElementById("quiz");
 var question = document.getElementById("question");
@@ -16,15 +16,16 @@ var progress = document.getElementById("progress");
 var scoreDiv = document.getElementById("scoreContainer");
 var overDiv = document.getElementById("over");
 var highscoreDiv = document.getElementById("highScores");
-
 var scoreList = document.querySelector("#score-list");
 var scoresbtn = document.getElementById("showScores");
 var hscoresbtn = document.getElementById("hScores");
 
+//Inserting sound clip
 var bleep= new Audio();
 bleep.src="bleep-sound.mp3";
 function loadContent(){
-    bleep.play();}
+bleep.play();}
+
 // create 5 questions Quiz
 let questions = [
     {
@@ -52,23 +53,23 @@ let questions = [
         choiceD : "jQuery",
         correct : "C"
     },{
-      question : "What is the HTML tag under which one can write the JavaScript code?",
-      imgSrc : "img/q4.png",
-     choiceA : "scripted",
-     choiceB : "script",
-     choiceC : "js",
-     choiceD : "None",
-     correct : "B"
-},{
-    question : " What is the correct syntax for referring to an external script called 'sc.js'?",
-    imgSrc : "img/q5.png",
-    choiceA : "script src=sc.js",
-    choiceB : "script href=sc.js",
-    choiceC : "script ref=sc.js",
-    choiceD : "script url=sc.js",
-    correct : "A"
-},
-];
+        question : "What is the HTML tag under which one can write the JavaScript code?",
+        imgSrc : "img/q4.png",
+        choiceA : "scripted",
+        choiceB : "script",
+        choiceC : "js",
+        choiceD : "None",
+        correct : "B"
+    },{
+        question : " What is the correct syntax for referring to an external script called 'sc.js'?",
+        imgSrc : "img/q5.png",
+        choiceA : "script src=sc.js",
+        choiceB : "script href=sc.js",
+        choiceC : "script ref=sc.js",
+        choiceD : "script url=sc.js",
+        correct : "A"
+    },
+    ];
 // create some variables
 var lastQuestion = questions.length - 1;
 let runningQuestion = 0;
@@ -89,7 +90,7 @@ function renderQuestion(){
     choiceD.innerHTML = q.choiceD;
 }
 start.addEventListener("click",startQuiz);
-// start quiz
+// start quiz at the click
 function startQuiz(){
     start.style.display = "none";
     renderQuestion();
@@ -99,9 +100,9 @@ function startQuiz(){
     TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
 function time(){
-        TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
+    TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 }
-// render progress
+// render progress of the quiz
 function renderProgress(){
     for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
         progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
@@ -114,8 +115,7 @@ function renderCounter(answer){
         timeGauge.style.width = count * gaugeUnit + "px";
         
         count--
-        
-     
+            
     }
     else{
         // change progress color to red
@@ -130,7 +130,7 @@ function renderCounter(answer){
         }
     }
 }
-// checkAnwer if right or wrong
+// checkAnwer for correct response
 function checkAnswer(answer){
     if( answer == questions[runningQuestion].correct){
         // answer is correct
@@ -143,7 +143,7 @@ function checkAnswer(answer){
         answerIsWrong();
         count-=5
         bleep.play();
-        
+       
     }
     if(runningQuestion < lastQuestion){
         runningQuestion++;
@@ -162,7 +162,7 @@ function answerIsCorrect(){
 function answerIsWrong(count){
     document.getElementById(runningQuestion).style.backgroundColor = "#f00";
 }
-// score render
+// score is displayed in % with appropriate icons
 function scoreRender(){
     scoreDiv.style.display = "block";
     // calculate the amount of question percent answered by the user
@@ -183,23 +183,25 @@ function scoreRender(){
 
     
     function saveScore(){
-        //var recent_scores = [];
+
           scoreDiv.style.display ="none";
           highscoreDiv.style.display = "block";
           scoreList.innerHTML = "Score"
           var initial = document.getElementById("initial").value;
                   var p = document.createElement("p");
            p.textContent = initial + (": " + score);
-          
+        //saving the score in an array 
               var highScore = JSON.parse(localStorage.getItem("highScore")) || [];
               console.log("highScore", highScore)
               var newHighScore = {
                   userInitial: initial,
                   userScore: score
-              }
+                  }
+        //pushing the array to local storage
               highScore.push(newHighScore);
               console.log("highScore", highScore)
               localStorage.setItem("highScore",JSON.stringify(highScore));
+        //directing to another html
               window.location.href = "highscore.html";
       }
          

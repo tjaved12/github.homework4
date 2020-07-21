@@ -156,10 +156,8 @@ list-style: none;
     top:20px;
     left:305px;
 }
-p{
-    font-size: 20px;
 
-}
+
 #score-list{
     font-size: 40px;
 }
@@ -212,7 +210,10 @@ button{
 top: 10px;
 left: 10px;
 }
-
+p{
+    text-align: justify;
+    margin-left: 25px;
+}
 
 
 
