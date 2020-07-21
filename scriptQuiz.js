@@ -24,7 +24,7 @@ var hscoresbtn = document.getElementById("hScores");
 var bleep= new Audio();
 bleep.src="bleep-sound.mp3";
 function loadContent(){
-    bleep.play();
+    bleep.play();}
 // create 5 questions Quiz
 let questions = [
     {
@@ -180,70 +180,28 @@ function scoreRender(){
     var submitbtn = document.getElementById("test");
     console.log('submitbtn', submitbtn)
     submitbtn.addEventListener("click", saveScore);
-  
-}
-function saveScore(){
-  var recent_scores = [];
-    scoreDiv.style.display ="none";
-    highscoreDiv.style.display = "block";
-    scoreList.innerHTML = "Score" 
-    var initial = document.getElementById('initial').value;
-    localStorage.setItem('user_name', initial); //store a key/value
-    var retrievedUsername = localStorage.getItem('user_name'); //retrieve the key
-    localStorage.setItem('score', score); //store a key/value
-    var retrievedScore = localStorage.getItem('score'); //retrieve the key
-    var p = document.createElement("p");
-     p.textContent = retrievedUsername + (": " + retrievedScore);
- 
-        localStorage.setItem('highScores', p); //store a key/value
-        var retrievedhighScore = localStorage.getItem('highScores'); 
-        scoreList.appendChild(p);
 
-   
-  
-    //$("#hScores").on("click",function(){
-       // console.log("open")
-       
-        //var highScores = [];
-
-    //localStorage.setItem("highScores",p, JSON.stringify(highScores));
-    //highScores = JSON.parse(localStorage.getItem("highScores"));
-
-
-    //highScores.sort(function(a, b) {
-    //return b-a;
-   // });
-    //console.log(highScores);
-      
-   // })
-
-
+    
+    function saveScore(){
+        //var recent_scores = [];
+          scoreDiv.style.display ="none";
+          highscoreDiv.style.display = "block";
+          scoreList.innerHTML = "Score"
+          var initial = document.getElementById("initial").value;
+                  var p = document.createElement("p");
+           p.textContent = initial + (": " + score);
+          
+              var highScore = JSON.parse(localStorage.getItem("highScore")) || [];
+              console.log("highScore", highScore)
+              var newHighScore = {
+                  userInitial: initial,
+                  userScore: score
+              }
+              highScore.push(newHighScore);
+              console.log("highScore", highScore)
+              localStorage.setItem("highScore",JSON.stringify(highScore));
+              window.location.href = "highscore.html";
+      }
+         
 }
 
-//function saveScore(){
-    //scoreDiv.style.display ="none";
-    //highscoreDiv.style.display = "block";
-    //scoreList.innerHTML = "Score" 
-    //scoreList.innerHTML = "High Score" 
-
-    //retrieve the User Name
-
-    //var initial = document.getElementById('initial').value;
-   
-   // localStorage.setItem('user_name', initial); //store a key/value
-   //localStorage.setItem('user_name', initial); 
-  // var retrievedUsername = localStorage.getItem('user_name').split(",");
-  //  retrievedUsername.push(initial) 
-   // localStorage.setItem('user_name', retrievedUsername)
-    //retrieve the score
-    //localStorage.setItem('score', score); //store a key/value
-    //localStorage.setItem('score', score);
-    //var retrievedScore = localStorage.getItem('score').split(","); //retrieve the key
-   // retrievedScore.push(score)
-    //localStorage.setItem('score',retrievedScore[i])
-    //for (var i = 0; i < 2; i++){
-    //var p = document.createElement("p");
-    // p.textContent = user_name + (": " + score);
-    //scoreList.appendChild(p);
-    //}
-   
